@@ -9,7 +9,7 @@
 
 const CORRECT_CODE = "AURA2425";
 
-const VERIFY_DURATION = 1450;
+const VERIFY_DURATION = 1600;
 
 const SUCCESS_DURATION = 3300;
 
@@ -31,10 +31,10 @@ const message =
   document.getElementById("message");
 
 const codeWrapper =
-  document.querySelector(".code-wrapper");
+  document.getElementById("codeWrapper");
 
 const loadingFill =
-  document.querySelector(".loading-fill");
+  document.getElementById("loadingFill");
 
 
 const loginScreen =
@@ -68,28 +68,25 @@ let verifyTimer = null;
 
 let finalTimer = null;
 
+let switchTimer = null;
+
 
 /* =========================================================
-   INITIAL FOCUS
+   INITIAL STATE
 ========================================================= */
 
 window.addEventListener(
   "load",
   () => {
 
-    setTimeout(
-      () => {
-        input.focus();
-      },
-      100
-    );
+    resetTerminal();
 
   }
 );
 
 
 /* =========================================================
-   CLICK ANYWHERE = INPUT FOCUS
+   KEEP INPUT FOCUSED
 ========================================================= */
 
 document.addEventListener(
@@ -97,7 +94,9 @@ document.addEventListener(
   () => {
 
     if (!terminalLocked) {
+
       input.focus();
+
     }
 
   }
@@ -105,7 +104,7 @@ document.addEventListener(
 
 
 /* =========================================================
-   CODE INPUT
+   INPUT
 ========================================================= */
 
 input.addEventListener(
@@ -133,7 +132,9 @@ input.addEventListener(
     input.value = value;
 
 
-    updateCodeBoxes(value);
+    updateCodeBoxes(
+      value
+    );
 
 
     message.classList.remove(
@@ -161,7 +162,7 @@ input.addEventListener(
 
 
 /* =========================================================
-   DISPLAY CHARACTERS
+   CODE BOXES
 ========================================================= */
 
 function updateCodeBoxes(value) {
@@ -222,12 +223,14 @@ input.addEventListener(
 
 
 /* =========================================================
-   BUTTON
+   ENTER BUTTON
 ========================================================= */
 
 enterButton.addEventListener(
   "click",
   event => {
+
+    event.preventDefault();
 
     event.stopPropagation();
 
@@ -238,7 +241,7 @@ enterButton.addEventListener(
 
 
 /* =========================================================
-   CHECK ACCESS CODE
+   CHECK CODE
 ========================================================= */
 
 function checkCode() {
@@ -305,14 +308,14 @@ function wrongCode() {
       );
 
     },
-    400
+    420
   );
 
 }
 
 
 /* =========================================================
-   AUTHORIZATION SEQUENCE
+   START AUTHORIZATION
 ========================================================= */
 
 function startAuthorization() {
@@ -320,17 +323,11 @@ function startAuthorization() {
   terminalLocked = true;
 
 
-  message.classList.remove(
-    "error"
-  );
-
-
   message.textContent =
     "AUTHENTICATION STARTED_";
 
 
-  switchScreen(
-    loginScreen,
+  showScreen(
     verifyScreen
   );
 
@@ -342,8 +339,7 @@ function startAuthorization() {
     setTimeout(
       () => {
 
-        switchScreen(
-          verifyScreen,
+        showScreen(
           successScreen
         );
 
@@ -356,8 +352,7 @@ function startAuthorization() {
     setTimeout(
       () => {
 
-        switchScreen(
-          successScreen,
+        showScreen(
           finalScreen
         );
 
@@ -374,47 +369,43 @@ function startAuthorization() {
    SCREEN SWITCH
 ========================================================= */
 
-function switchScreen(
-  from,
-  to
+function showScreen(
+  targetScreen
 ) {
 
-  if (from) {
-
-    from.classList.remove(
-      "active"
-    );
-
-  }
+  clearTimeout(
+    switchTimer
+  );
 
 
-  setTimeout(
-    () => {
+  allScreens.forEach(
+    screen => {
 
-      allScreens.forEach(
-        screen => {
-
-          screen.classList.remove(
-            "active"
-          );
-
-        }
-      );
-
-
-      to.classList.add(
+      screen.classList.remove(
         "active"
       );
 
-    },
-    220
+    }
   );
+
+
+  switchTimer =
+    setTimeout(
+      () => {
+
+        targetScreen.classList.add(
+          "active"
+        );
+
+      },
+      180
+    );
 
 }
 
 
 /* =========================================================
-   RESTART VERIFYING BAR
+   LOADING ANIMATION
 ========================================================= */
 
 function restartLoadingAnimation() {
@@ -435,7 +426,7 @@ function restartLoadingAnimation() {
 
 
 /* =========================================================
-   RESET TERMINAL
+   RESET
 ========================================================= */
 
 function resetTerminal() {
@@ -448,6 +439,10 @@ function resetTerminal() {
     finalTimer
   );
 
+  clearTimeout(
+    switchTimer
+  );
+
 
   terminalLocked = false;
 
@@ -455,7 +450,9 @@ function resetTerminal() {
   input.value = "";
 
 
-  updateCodeBoxes("");
+  updateCodeBoxes(
+    ""
+  );
 
 
   message.textContent =
@@ -505,7 +502,7 @@ function resetTerminal() {
 
 
 /* =========================================================
-   HOTKEYS
+   RESET HOTKEYS
 ========================================================= */
 
 document.addEventListener(
@@ -513,11 +510,26 @@ document.addEventListener(
   event => {
 
     /*
-    RESET:
-    Ctrl + R браузер обычно
-    перезагружает страницу,
-    поэтому используем просто R,
-    когда курсор не стоит в поле ввода.
+      ESC всегда возвращает терминал
+      в начало.
+    */
+
+    if (
+      event.key === "Escape"
+    ) {
+
+      event.preventDefault();
+
+      resetTerminal();
+
+      return;
+
+    }
+
+
+    /*
+      После завершения последовательности
+      клавиша R тоже делает RESET.
     */
 
     if (
@@ -532,29 +544,12 @@ document.addEventListener(
 
     }
 
-
-    /*
-    ESC тоже сбрасывает сайт.
-    Очень удобно на съёмке.
-    */
-
-    if (
-      event.key === "Escape"
-    ) {
-
-      event.preventDefault();
-
-      resetTerminal();
-
-    }
-
   }
 );
 
 
 /* =========================================================
-   OPTIONAL:
-   DOUBLE CLICK FINAL = RESET
+   DOUBLE CLICK FINAL SCREEN
 ========================================================= */
 
 finalScreen.addEventListener(
