@@ -1,3 +1,13 @@
+/* =========================================================
+   AURA ACCESS TERMINAL
+   FULL STYLESHEET
+========================================================= */
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
   box-sizing: border-box;
 }
@@ -5,25 +15,30 @@
 html,
 body {
   margin: 0;
+  padding: 0;
+
   width: 100%;
   height: 100%;
+
   overflow: hidden;
 }
 
 body {
   background: #050507;
-  color: #f5f1ff;
+
+  color: #f6f2ff;
 
   font-family:
-    "Arial",
+    Arial,
     "Helvetica Neue",
+    Helvetica,
     sans-serif;
 }
 
 
-/* =========================
-   ОСНОВНОЙ ЭКРАН
-========================= */
+/* =========================================================
+   MAIN SCREEN
+========================================================= */
 
 .screen {
   position: relative;
@@ -36,205 +51,265 @@ body {
   background:
     radial-gradient(
       circle at 50% 48%,
-      rgba(109, 48, 215, 0.19) 0%,
-      rgba(35, 16, 68, 0.08) 32%,
+      rgba(115, 54, 220, 0.18) 0%,
+      rgba(56, 26, 103, 0.08) 30%,
       rgba(5, 5, 7, 0) 58%
     ),
     linear-gradient(
       180deg,
-      #08080d 0%,
+      #09090e 0%,
       #050507 100%
     );
 }
 
 
-/* =========================
-   СЕТКА
-========================= */
+/* =========================================================
+   BACKGROUND GRID
+========================================================= */
 
 .grid {
   position: absolute;
+
   inset: 0;
+
+  pointer-events: none;
 
   opacity: 0.16;
 
   background-image:
     linear-gradient(
-      rgba(140, 86, 255, 0.12) 1px,
+      rgba(142, 91, 255, 0.11) 1px,
       transparent 1px
     ),
     linear-gradient(
       90deg,
-      rgba(140, 86, 255, 0.12) 1px,
+      rgba(142, 91, 255, 0.11) 1px,
       transparent 1px
     );
 
-  background-size: 70px 70px;
+  background-size:
+    70px 70px;
+
+  -webkit-mask-image:
+    radial-gradient(
+      circle at center,
+      black 0%,
+      transparent 76%
+    );
 
   mask-image:
     radial-gradient(
       circle at center,
       black 0%,
-      transparent 75%
+      transparent 76%
+    );
+}
+
+
+/* =========================================================
+   BACKGROUND GLOW
+========================================================= */
+
+.screen::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 900px;
+  height: 900px;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(102, 50, 190, 0.08),
+      rgba(102, 50, 190, 0.025) 42%,
+      transparent 70%
     );
 
   pointer-events: none;
 }
 
 
-/* =========================
+/* =========================================================
    SCAN LINE
-========================= */
+========================================================= */
 
 .scanline {
   position: absolute;
 
-  top: -10%;
   left: 0;
+  top: -5%;
 
   width: 100%;
   height: 2px;
 
-  opacity: 0.5;
+  pointer-events: none;
 
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #8b50ff,
-    #ffffff,
-    #8b50ff,
-    transparent
-  );
+  opacity: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      #6d36cb 30%,
+      #d7c0ff 50%,
+      #6d36cb 70%,
+      transparent 100%
+    );
 
   box-shadow:
-    0 0 12px rgba(130, 70, 255, 0.7);
+    0 0 10px rgba(146, 82, 255, 0.5);
 
   animation:
-    scan 7s linear infinite;
-
-  pointer-events: none;
+    scanMove 8s linear infinite;
 }
 
-@keyframes scan {
+@keyframes scanMove {
 
   0% {
     top: -5%;
     opacity: 0;
   }
 
-  10% {
-    opacity: 0.45;
+  8% {
+    opacity: 0.35;
   }
 
-  90% {
-    opacity: 0.45;
+  92% {
+    opacity: 0.35;
   }
 
   100% {
     top: 105%;
     opacity: 0;
   }
-
 }
 
 
-/* =========================
-   УГЛЫ
-========================= */
+/* =========================================================
+   CORNERS
+========================================================= */
 
 .corner {
   position: absolute;
 
-  width: 90px;
-  height: 90px;
+  width: 92px;
+  height: 92px;
 
   opacity: 0.8;
+
+  pointer-events: none;
 }
 
 .corner-tl {
   top: 30px;
   left: 30px;
 
-  border-left: 2px solid #8350e8;
-  border-top: 2px solid #8350e8;
+  border-top:
+    2px solid rgba(139, 84, 229, 0.82);
+
+  border-left:
+    2px solid rgba(139, 84, 229, 0.82);
 }
 
 .corner-tr {
   top: 30px;
   right: 30px;
 
-  border-right: 2px solid #8350e8;
-  border-top: 2px solid #8350e8;
+  border-top:
+    2px solid rgba(139, 84, 229, 0.82);
+
+  border-right:
+    2px solid rgba(139, 84, 229, 0.82);
 }
 
 .corner-bl {
   bottom: 30px;
   left: 30px;
 
-  border-left: 2px solid #8350e8;
-  border-bottom: 2px solid #8350e8;
+  border-bottom:
+    2px solid rgba(139, 84, 229, 0.82);
+
+  border-left:
+    2px solid rgba(139, 84, 229, 0.82);
 }
 
 .corner-br {
   bottom: 30px;
   right: 30px;
 
-  border-right: 2px solid #8350e8;
-  border-bottom: 2px solid #8350e8;
+  border-bottom:
+    2px solid rgba(139, 84, 229, 0.82);
+
+  border-right:
+    2px solid rgba(139, 84, 229, 0.82);
 }
 
 
-/* =========================
-   СИСТЕМНАЯ ИНФОРМАЦИЯ
-========================= */
+/* =========================================================
+   SYSTEM INFORMATION
+========================================================= */
 
 .system-info {
   position: absolute;
 
-  top: 80px;
+  top: 72px;
+
+  z-index: 10;
 
   display: flex;
   flex-direction: column;
 
   gap: 8px;
 
-  font-family: monospace;
+  color: #71697c;
 
-  font-size: 12px;
+  font-family:
+    "Courier New",
+    monospace;
 
-  letter-spacing: 2px;
+  font-size: 11px;
 
-  color: #777184;
+  letter-spacing: 2.4px;
 
-  z-index: 5;
+  line-height: 1.2;
 }
 
 .system-info span:first-child {
-  color: #b888ff;
+  color: #b17dff;
 }
 
 .system-info-left {
-  left: 70px;
+  left: 68px;
 }
 
 .system-info-right {
-  right: 70px;
+  right: 68px;
 
   text-align: right;
 }
 
 
-/* =========================
-   ЭКРАНЫ
-========================= */
+/* =========================================================
+   PANELS
+========================================================= */
 
 .panel {
   position: absolute;
 
   inset: 0;
 
-  display: flex;
+  z-index: 3;
 
+  display: flex;
   flex-direction: column;
 
   align-items: center;
@@ -243,54 +318,98 @@ body {
   opacity: 0;
   visibility: hidden;
 
-  transform: scale(0.985);
+  transform:
+    scale(0.985);
 
   transition:
-    opacity 0.45s ease,
-    transform 0.45s ease,
-    visibility 0.45s;
+    opacity 0.42s ease,
+    transform 0.42s ease,
+    visibility 0.42s;
 }
 
 .panel.active {
   opacity: 1;
   visibility: visible;
-  transform: scale(1);
+
+  transform:
+    scale(1);
 }
 
 
-/* =========================
-   LOGO
-========================= */
+/* =========================================================
+   REAL AURA SVG LOGO
+========================================================= */
 
-.logo {
-  font-size: clamp(110px, 14vw, 240px);
+.aura-logo {
+  display: block;
 
-  font-weight: 800;
+  height: auto;
 
-  letter-spacing: -13px;
+  object-fit: contain;
 
-  line-height: 0.85;
-
-  color: #f4f0ff;
-
-  text-shadow:
-    0 0 22px rgba(130, 70, 255, 0.22);
-
-  margin-bottom: 26px;
+  filter:
+    drop-shadow(
+      0 0 16px
+      rgba(132, 70, 238, 0.15)
+    );
 }
+
+
+/* LOGIN LOGO */
+
+.aura-logo-main {
+  width:
+    min(620px, 46vw);
+
+  max-height: 220px;
+
+  margin-bottom: 28px;
+}
+
+
+/* FINAL LOGO */
+
+.aura-logo-final {
+  width:
+    min(720px, 52vw);
+
+  max-height: 260px;
+
+  margin-bottom: 34px;
+
+  filter:
+    drop-shadow(
+      0 0 24px
+      rgba(137, 75, 242, 0.23)
+    );
+}
+
+
+/* =========================================================
+   FORUM TITLE
+========================================================= */
 
 .forum-title {
-  font-size: clamp(16px, 1.55vw, 28px);
+  color: #bdb3c8;
 
-  letter-spacing: 8px;
+  font-size:
+    clamp(
+      15px,
+      1.45vw,
+      27px
+    );
 
-  color: #b9aec9;
+  font-weight: 400;
+
+  letter-spacing: 7px;
+
+  text-align: center;
 }
 
 
-/* =========================
+/* =========================================================
    SEPARATOR
-========================= */
+========================================================= */
 
 .separator {
   display: flex;
@@ -299,7 +418,8 @@ body {
 
   gap: 18px;
 
-  margin: 32px 0;
+  margin:
+    30px 0 28px;
 }
 
 .separator span {
@@ -312,57 +432,75 @@ body {
     linear-gradient(
       90deg,
       transparent,
-      #7b42e8
+      rgba(131, 74, 226, 0.9)
     );
 }
 
 .separator span:last-child {
-  transform: scaleX(-1);
+  transform:
+    scaleX(-1);
 }
 
 .diamond {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
 
-  background: #b780ff;
+  transform:
+    rotate(45deg);
 
-  transform: rotate(45deg);
+  background:
+    #b67dff;
 
   box-shadow:
-    0 0 14px #9058ff;
+    0 0 14px
+    rgba(156, 92, 255, 0.8);
 }
 
 
-/* =========================
-   TERMINAL
-========================= */
+/* =========================================================
+   LOGIN TERMINAL
+========================================================= */
 
 .terminal-label {
-  font-family: monospace;
+  margin-bottom: 14px;
 
-  font-size: 13px;
+  color: #746c7c;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 12px;
 
   letter-spacing: 4px;
 
-  color: #756e7e;
-
-  margin-bottom: 14px;
+  text-align: center;
 }
 
 h1 {
-  margin: 0 0 28px;
+  margin:
+    0 0 28px;
 
-  font-size: clamp(23px, 2vw, 36px);
+  color: #f3effa;
+
+  font-size:
+    clamp(
+      22px,
+      2vw,
+      36px
+    );
+
+  font-weight: 500;
 
   letter-spacing: 7px;
 
-  font-weight: 500;
+  text-align: center;
 }
 
 
-/* =========================
-   CODE BOXES
-========================= */
+/* =========================================================
+   CODE INPUT
+========================================================= */
 
 .code-wrapper {
   position: relative;
@@ -373,10 +511,18 @@ h1 {
 #codeInput {
   position: absolute;
 
-  opacity: 0;
+  left: -9999px;
 
-  pointer-events: none;
+  width: 1px;
+  height: 1px;
+
+  opacity: 0;
 }
+
+
+/* =========================================================
+   CODE BOXES
+========================================================= */
 
 .code-boxes {
   display: flex;
@@ -394,57 +540,119 @@ h1 {
   height: 68px;
 
   border:
-    1px solid rgba(168, 119, 255, 0.55);
+    1px solid
+    rgba(
+      168,
+      119,
+      255,
+      0.48
+    );
 
   background:
-    rgba(40, 23, 68, 0.24);
+    rgba(
+      40,
+      23,
+      68,
+      0.22
+    );
 
-  font-family: monospace;
+  color: #faf8ff;
+
+  font-family:
+    "Courier New",
+    monospace;
 
   font-size: 27px;
 
-  color: #f9f7ff;
+  font-weight: 400;
 
   box-shadow:
-    inset 0 0 15px rgba(120, 64, 215, 0.08);
+    inset
+    0
+    0
+    15px
+    rgba(
+      120,
+      64,
+      215,
+      0.06
+    );
 
   transition:
-    0.2s ease;
+    border-color 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
 }
 
 .code-box.filled {
-  border-color: #a26cff;
+  border-color:
+    rgba(
+      171,
+      113,
+      255,
+      0.95
+    );
 
   background:
-    rgba(111, 58, 204, 0.17);
+    rgba(
+      112,
+      59,
+      204,
+      0.14
+    );
 
   box-shadow:
-    0 0 13px rgba(129, 67, 237, 0.22);
+    0
+    0
+    12px
+    rgba(
+      129,
+      67,
+      237,
+      0.2
+    );
 }
 
 
-/* =========================
+/* =========================================================
    BUTTON
-========================= */
+========================================================= */
 
 button {
-  margin-top: 28px;
-
   min-width: 180px;
 
-  padding: 13px 28px;
+  margin-top: 28px;
+
+  padding:
+    13px 28px;
 
   border:
-    1px solid #8451df;
+    1px solid
+    rgba(
+      139,
+      84,
+      229,
+      0.9
+    );
+
+  outline: none;
 
   background:
-    rgba(62, 29, 105, 0.22);
+    rgba(
+      65,
+      31,
+      110,
+      0.18
+    );
 
-  color: #d7c3ff;
+  color: #d7c4f9;
 
-  font-size: 13px;
+  font-family:
+    "Courier New",
+    monospace;
 
-  font-family: monospace;
+  font-size: 12px;
 
   letter-spacing: 5px;
 
@@ -452,60 +660,118 @@ button {
 
   transition:
     background 0.2s ease,
+    border-color 0.2s ease,
     box-shadow 0.2s ease;
 }
 
 button:hover {
+  border-color: #a76cff;
+
   background:
-    rgba(98, 49, 170, 0.36);
+    rgba(
+      98,
+      49,
+      170,
+      0.3
+    );
 
   box-shadow:
-    0 0 24px rgba(127, 64, 230, 0.18);
+    0
+    0
+    22px
+    rgba(
+      127,
+      64,
+      230,
+      0.16
+    );
 }
 
 
-/* =========================
-   MESSAGE
-========================= */
+/* =========================================================
+   LOGIN MESSAGE
+========================================================= */
 
 .message {
-  height: 20px;
+  height: 18px;
 
-  margin-top: 20px;
+  margin-top: 19px;
 
-  font-family: monospace;
+  color: #655e6c;
 
-  font-size: 11px;
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 10px;
 
   letter-spacing: 3px;
-
-  color: #675f70;
 }
 
 .message.error {
-  color: #cb657d;
+  color: #d36c82;
 }
 
 
-/* =========================
-   VERIFY
-========================= */
+/* =========================================================
+   WRONG CODE SHAKE
+========================================================= */
+
+.shake {
+  animation:
+    shakeAnimation
+    0.35s
+    ease;
+}
+
+@keyframes shakeAnimation {
+
+  0%,
+  100% {
+    transform:
+      translateX(0);
+  }
+
+  25% {
+    transform:
+      translateX(-11px);
+  }
+
+  75% {
+    transform:
+      translateX(11px);
+  }
+}
+
+
+/* =========================================================
+   VERIFY SCREEN
+========================================================= */
 
 .verify-icon {
-  width: 135px;
-  height: 135px;
-
-  border:
-    1px solid #8a56e0;
-
-  border-radius: 50%;
-
   position: relative;
+
+  width: 136px;
+  height: 136px;
 
   margin-bottom: 38px;
 
+  border:
+    1px solid
+    rgba(
+      141,
+      84,
+      225,
+      0.8
+    );
+
+  border-radius: 50%;
+
   animation:
-    rotate 2s linear infinite;
+    verifyRotate
+    2.2s
+    linear
+    infinite;
 }
 
 .verify-icon::before {
@@ -518,8 +784,11 @@ button:hover {
   border:
     3px solid transparent;
 
-  border-top-color: #c1a1ff;
-  border-right-color: #7242d0;
+  border-top-color:
+    #c5a5ff;
+
+  border-right-color:
+    #7242d0;
 
   border-radius: 50%;
 }
@@ -529,54 +798,82 @@ button:hover {
 
   position: absolute;
 
-  top: 50%;
   left: 50%;
+  top: 50%;
 
   width: 8px;
   height: 8px;
 
-  border-radius: 50%;
-
-  background: #c7aaff;
-
-  box-shadow:
-    0 0 20px #985cff;
-
   transform:
     translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    #c7aaff;
+
+  box-shadow:
+    0
+    0
+    18px
+    #985cff;
 }
 
-@keyframes rotate {
+@keyframes verifyRotate {
 
-  to {
-    transform: rotate(360deg);
+  from {
+    transform:
+      rotate(0deg);
   }
 
+  to {
+    transform:
+      rotate(360deg);
+  }
 }
 
 .verify-title {
-  font-size: 25px;
+  color: #f1ebfb;
+
+  font-size:
+    clamp(
+      21px,
+      2vw,
+      32px
+    );
 
   letter-spacing: 7px;
+
+  text-align: center;
 }
 
 .verify-subtitle {
-  margin-top: 10px;
+  margin-top: 12px;
 
-  font-family: monospace;
+  color: #7e7489;
 
-  color: #81778d;
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 11px;
 
   letter-spacing: 4px;
+
+  text-align: center;
 }
 
 
-/* =========================
-   LOADING
-========================= */
+/* =========================================================
+   VERIFY LOADING BAR
+========================================================= */
 
 .loading-line {
-  width: min(680px, 65vw);
+  width:
+    min(
+      680px,
+      65vw
+    );
 
   height: 8px;
 
@@ -585,7 +882,21 @@ button:hover {
   overflow: hidden;
 
   border:
-    1px solid #64428e;
+    1px solid
+    rgba(
+      101,
+      65,
+      145,
+      0.9
+    );
+
+  background:
+    rgba(
+      17,
+      10,
+      25,
+      0.45
+    );
 }
 
 .loading-fill {
@@ -595,73 +906,142 @@ button:hover {
   background:
     linear-gradient(
       90deg,
-      #6833c3,
+      #6030b7,
       #aa76ff,
-      #ffffff
+      #efe6ff
     );
 
   box-shadow:
-    0 0 12px rgba(171, 118, 255, 0.65);
-
-  animation:
-    loading 0.9s ease forwards;
+    0
+    0
+    12px
+    rgba(
+      171,
+      118,
+      255,
+      0.55
+    );
 }
 
-@keyframes loading {
 
-  to {
-    width: 100%;
+/*
+JS добавляет класс loading-active,
+поэтому progress bar каждый раз
+запускается заново.
+*/
+
+.loading-fill.loading-active {
+  animation:
+    verifyLoading
+    1.15s
+    cubic-bezier(
+      0.22,
+      0.7,
+      0.28,
+      1
+    )
+    forwards;
+}
+
+@keyframes verifyLoading {
+
+  0% {
+    width: 0%;
   }
 
+  35% {
+    width: 28%;
+  }
+
+  68% {
+    width: 74%;
+  }
+
+  100% {
+    width: 100%;
+  }
 }
 
 .loading-data {
-  width: min(680px, 65vw);
-
   display: flex;
+
   justify-content: space-between;
 
-  margin-top: 10px;
+  width:
+    min(
+      680px,
+      65vw
+    );
 
-  color: #73687f;
+  margin-top: 11px;
 
-  font-size: 11px;
+  color: #72697c;
 
-  font-family: monospace;
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 10px;
 
   letter-spacing: 3px;
 }
 
 
-/* =========================
-   SUCCESS
-========================= */
+/* =========================================================
+   SUCCESS SCREEN
+========================================================= */
 
 .success-small {
-  color: #766a82;
+  margin-bottom: 22px;
 
-  font-family: monospace;
+  color: #766c80;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 11px;
 
   letter-spacing: 4px;
-
-  margin-bottom: 22px;
 }
 
 #successScreen h2 {
-  margin: 0 0 45px;
+  margin:
+    0 0 42px;
 
-  font-size: clamp(44px, 5vw, 85px);
+  color: #bd98ff;
+
+  font-size:
+    clamp(
+      42px,
+      5vw,
+      84px
+    );
+
+  font-weight: 500;
 
   letter-spacing: 8px;
 
-  color: #c19cff;
+  text-align: center;
 
   text-shadow:
-    0 0 26px rgba(132, 67, 235, 0.3);
+    0
+    0
+    24px
+    rgba(
+      132,
+      67,
+      235,
+      0.26
+    );
 }
 
 .success-list {
-  width: min(700px, 65vw);
+  width:
+    min(
+      700px,
+      65vw
+    );
 }
 
 .success-row {
@@ -669,153 +1049,237 @@ button:hover {
 
   justify-content: space-between;
 
-  padding: 15px 8px;
+  gap: 30px;
+
+  padding:
+    15px 8px;
 
   border-bottom:
-    1px solid rgba(131, 84, 190, 0.25);
+    1px solid
+    rgba(
+      131,
+      84,
+      190,
+      0.22
+    );
 
-  font-family: monospace;
+  color: #77707f;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 12px;
 
   letter-spacing: 3px;
-
-  color: #777080;
 }
 
 .success-row strong {
-  color: #d7c1ff;
+  color: #d6c0fb;
 
   font-weight: 400;
 }
 
 .final-row strong {
-  color: #9e6cff;
+  color: #9e69ff;
 }
 
 
-/* =========================
-   FINAL
-========================= */
+/* =========================================================
+   FINAL SCREEN
+========================================================= */
 
 .final-screen {
   background:
     radial-gradient(
       circle at center,
-      rgba(105, 48, 201, 0.26),
-      transparent 54%
+      rgba(
+        109,
+        51,
+        201,
+        0.21
+      ),
+      rgba(
+        31,
+        14,
+        55,
+        0.07
+      )
+      43%,
+      transparent
+      67%
     );
 }
 
-.final-logo {
-  font-size: clamp(130px, 18vw, 290px);
-
-  font-weight: 800;
-
-  letter-spacing: -14px;
-
-  line-height: 0.8;
-
-  color: #f7f4ff;
-}
-
 .final-forum {
-  margin-top: 35px;
+  color: #bbb0c6;
 
-  letter-spacing: 12px;
+  font-size:
+    clamp(
+      15px,
+      1.55vw,
+      28px
+    );
 
-  font-size: clamp(17px, 1.7vw, 30px);
+  letter-spacing: 7px;
 
-  color: #b6a8c7;
+  text-align: center;
 }
 
 .final-countdown {
-  margin-top: 60px;
+  margin-top: 54px;
 
-  font-family: monospace;
+  color: #aa75ff;
 
-  font-size: clamp(40px, 5vw, 85px);
+  font-size:
+    clamp(
+      48px,
+      5.6vw,
+      98px
+    );
 
-  letter-spacing: 14px;
+  font-weight: 600;
 
-  color: #9d65ff;
+  letter-spacing: 18px;
+
+  line-height: 1;
+
+  text-align: center;
 
   text-shadow:
-    0 0 25px rgba(143, 75, 255, 0.28);
+    0
+    0
+    28px
+    rgba(
+      143,
+      75,
+      255,
+      0.3
+    );
+
+  animation:
+    finalPulse
+    3s
+    ease-in-out
+    infinite;
+}
+
+@keyframes finalPulse {
+
+  0%,
+  100% {
+    opacity: 0.84;
+
+    text-shadow:
+      0
+      0
+      18px
+      rgba(
+        143,
+        75,
+        255,
+        0.18
+      );
+  }
+
+  50% {
+    opacity: 1;
+
+    text-shadow:
+      0
+      0
+      34px
+      rgba(
+        143,
+        75,
+        255,
+        0.4
+      );
+  }
 }
 
 .final-status {
-  margin-top: 20px;
+  margin-top: 24px;
 
-  font-family: monospace;
+  color: #6e6577;
 
-  font-size: 12px;
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 11px;
 
   letter-spacing: 5px;
-
-  color: #6c6377;
 }
 
 
-/* =========================
+/* =========================================================
    FOOTER
-========================= */
+========================================================= */
 
 footer {
   position: absolute;
 
-  bottom: 52px;
   left: 50%;
+  bottom: 50px;
+
+  z-index: 10;
+
+  display: flex;
+
+  gap: 45px;
 
   transform:
     translateX(-50%);
 
-  display: flex;
+  color: #625a6b;
 
-  gap: 46px;
-
-  font-family: monospace;
+  font-family:
+    "Courier New",
+    monospace;
 
   font-size: 9px;
 
   letter-spacing: 3px;
-
-  color: #635b6d;
-
-  z-index: 10;
 }
 
 
-/* =========================
-   WRONG PASSWORD
-========================= */
+/* =========================================================
+   SUBTLE SCREEN FLICKER
+========================================================= */
 
-.shake {
-  animation:
-    shake 0.35s ease;
+.screen::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 20;
+
+  pointer-events: none;
+
+  opacity: 0.018;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #ffffff 0px,
+      #ffffff 1px,
+      transparent 1px,
+      transparent 4px
+    );
+
+  mix-blend-mode: overlay;
 }
 
-@keyframes shake {
 
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-
-  25% {
-    transform: translateX(-12px);
-  }
-
-  75% {
-    transform: translateX(12px);
-  }
-
-}
-
-
-/* =========================
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
-@media (max-width: 850px) {
+@media
+(max-width: 850px) {
 
   .system-info {
     display: none;
@@ -825,15 +1289,70 @@ footer {
     display: none;
   }
 
-  .code-box {
-    width: 38px;
-    height: 52px;
+  .corner {
+    width: 55px;
+    height: 55px;
+  }
 
-    font-size: 20px;
+  .aura-logo-main {
+    width:
+      min(
+        78vw,
+        520px
+      );
+  }
+
+  .aura-logo-final {
+    width:
+      min(
+        80vw,
+        580px
+      );
+  }
+
+  .forum-title,
+  .final-forum {
+    padding:
+      0 25px;
+
+    letter-spacing: 4px;
   }
 
   .code-boxes {
     gap: 5px;
   }
 
+  .code-box {
+    width: 38px;
+    height: 50px;
+
+    font-size: 19px;
+  }
+
+  h1 {
+    letter-spacing: 4px;
+  }
+
+  .terminal-label {
+    padding:
+      0 24px;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+  }
+
+  .success-list {
+    width: 88vw;
+  }
+
+  .success-row {
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+  }
+
+  .final-countdown {
+    letter-spacing: 10px;
+  }
 }
