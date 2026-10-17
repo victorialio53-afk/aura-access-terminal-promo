@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
 
@@ -17,15 +18,17 @@
 
   <main class="screen">
 
+    <!-- ФОН -->
     <div class="grid"></div>
     <div class="scanline"></div>
 
+    <!-- УГЛЫ -->
     <div class="corner corner-tl"></div>
     <div class="corner corner-tr"></div>
     <div class="corner corner-bl"></div>
     <div class="corner corner-br"></div>
 
-
+    <!-- СИСТЕМНЫЙ ТЕКСТ СЛЕВА -->
     <div class="system-info system-info-left">
       <span>AURA.SYSTEM</span>
       <span>NODE // ACCESS</span>
@@ -33,7 +36,7 @@
       <span>STATUS // ONLINE</span>
     </div>
 
-
+    <!-- СИСТЕМНЫЙ ТЕКСТ СПРАВА -->
     <div class="system-info system-info-right">
       <span>AURA FORUM 2026</span>
       <span>BUILD 1.0.0</span>
@@ -42,131 +45,82 @@
     </div>
 
 
-    <!-- =========================
-         LOGIN
-    ========================== -->
+    <!-- ==================================================
+         LOGIN SCREEN
+    =================================================== -->
 
-    <section id="loginScreen" class="panel active">
+    <section
+      id="loginScreen"
+      class="panel active"
+    >
 
-      <img
-        class="aura-logo aura-logo-main"
-        src="assets/aura-logo.svg"
-        alt="AURA"
-      >
+      <div class="panel-content login-content">
 
-      <div class="forum-title">
-        ФОРУМ ДЛЯ ПЕРВОКУРСНИКОВ 2026
-      </div>
-
-      <div class="separator">
-        <span></span>
-        <div class="diamond"></div>
-        <span></span>
-      </div>
-
-      <div class="terminal-label">
-        ACCESS TERMINAL // AUTHORIZATION REQUIRED
-      </div>
-
-      <h1>ENTER ACCESS CODE</h1>
-
-      <div class="code-wrapper">
-
-        <input
-          id="codeInput"
-          type="text"
-          maxlength="8"
-          autocomplete="off"
-          spellcheck="false"
-          autofocus
+        <img
+          class="aura-logo aura-logo-main"
+          src="assets/aura-logo.svg"
+          alt="AURA"
         >
 
-        <div id="codeBoxes" class="code-boxes">
-          <div class="code-box"></div>
-          <div class="code-box"></div>
-          <div class="code-box"></div>
-          <div class="code-box"></div>
-          <div class="code-box"></div>
-          <div class="code-box"></div>
-          <div class="code-box"></div>
-          <div class="code-box"></div>
+        <div class="forum-title">
+          ФОРУМ ДЛЯ ПЕРВОКУРСНИКОВ 2026
         </div>
 
-      </div>
-
-      <button id="enterButton">
-        ENTER
-      </button>
-
-      <div id="message" class="message">
-        WAITING FOR ACCESS CODE_
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         VERIFYING
-    ========================== -->
-
-    <section id="verifyScreen" class="panel">
-
-      <div class="verify-icon"></div>
-
-      <div class="verify-title">
-        VERIFYING ACCESS CODE
-      </div>
-
-      <div class="verify-subtitle">
-        CONNECTING TO AURA.SYSTEM
-      </div>
-
-      <div class="loading-line">
-        <div class="loading-fill"></div>
-      </div>
-
-      <div class="loading-data">
-        <span>AUTHENTICATION</span>
-        <span>IN PROGRESS...</span>
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         SUCCESS
-    ========================== -->
-
-    <section id="successScreen" class="panel">
-
-      <div class="success-small">
-        AURA.SYSTEM // AUTHORIZATION
-      </div>
-
-      <h2>
-        CODE ACCEPTED
-      </h2>
-
-      <div class="success-list">
-
-        <div class="success-row">
-          <span>ACCESS FRAGMENTS</span>
-          <strong>3/3 COMPLETE</strong>
+        <div class="separator">
+          <span></span>
+          <div class="diamond"></div>
+          <span></span>
         </div>
 
-        <div class="success-row">
-          <span>TEAM STATUS</span>
-          <strong>READY</strong>
+        <div class="terminal-label">
+          ACCESS TERMINAL // AUTHORIZATION REQUIRED
         </div>
 
-        <div class="success-row">
-          <span>AUTHORIZATION</span>
-          <strong>CONFIRMED</strong>
+        <h1>
+          ENTER ACCESS CODE
+        </h1>
+
+        <div
+          id="codeWrapper"
+          class="code-wrapper"
+        >
+
+          <input
+            id="codeInput"
+            type="text"
+            maxlength="8"
+            autocomplete="off"
+            autocorrect="off"
+            spellcheck="false"
+            autofocus
+          >
+
+          <div class="code-boxes">
+
+            <div class="code-box"></div>
+            <div class="code-box"></div>
+            <div class="code-box"></div>
+            <div class="code-box"></div>
+
+            <div class="code-box code-gap"></div>
+
+            <div class="code-box"></div>
+            <div class="code-box"></div>
+            <div class="code-box"></div>
+
+          </div>
+
         </div>
 
-        <div class="success-row final-row">
-          <span>SYSTEM ACCESS</span>
-          <strong>RESTORED</strong>
+        <button id="enterButton">
+          ENTER
+        </button>
+
+        <div
+          id="message"
+          class="message"
+        >
+          WAITING FOR ACCESS CODE_
         </div>
 
       </div>
@@ -174,39 +128,146 @@
     </section>
 
 
-    <!-- =========================
-         FINAL
-    ========================== -->
+    <!-- ==================================================
+         VERIFY SCREEN
+    =================================================== -->
 
-    <section id="finalScreen" class="panel final-screen">
+    <section
+      id="verifyScreen"
+      class="panel"
+    >
 
-      <img
-        class="aura-logo aura-logo-final"
-        src="assets/aura-logo.svg"
-        alt="AURA"
-      >
+      <div class="panel-content verify-content">
 
-      <div class="final-forum">
-        ФОРУМ ДЛЯ ПЕРВОКУРСНИКОВ 2026
-      </div>
+        <div class="verify-circle">
 
-      <div class="final-countdown">
-        СКОРО
-      </div>
+          <div class="verify-ring ring-one"></div>
+          <div class="verify-ring ring-two"></div>
 
-      <div class="final-status">
-        SYSTEM READY_
+          <div class="verify-dot"></div>
+
+        </div>
+
+        <div class="verify-title">
+          VERIFYING ACCESS CODE
+        </div>
+
+        <div class="verify-subtitle">
+          CONNECTING TO AURA.SYSTEM
+        </div>
+
+        <div class="loading-line">
+
+          <div
+            id="loadingFill"
+            class="loading-fill"
+          ></div>
+
+        </div>
+
+        <div class="loading-data">
+
+          <span>
+            AUTHENTICATION
+          </span>
+
+          <span>
+            IN PROGRESS...
+          </span>
+
+        </div>
+
       </div>
 
     </section>
 
 
-    <footer>
-      <span>PEOPLE</span>
-      <span>IDEAS</span>
-      <span>TECHNOLOGIES</span>
-      <span>COMMUNITY</span>
-    </footer>
+    <!-- ==================================================
+         SUCCESS SCREEN
+    =================================================== -->
+
+    <section
+      id="successScreen"
+      class="panel"
+    >
+
+      <div class="panel-content success-content">
+
+        <div class="success-small">
+          AURA.SYSTEM // AUTHORIZATION
+        </div>
+
+        <div class="success-title">
+          CODE ACCEPTED
+        </div>
+
+        <div class="success-list">
+
+          <div class="success-row">
+            <span>ACCESS FRAGMENTS</span>
+            <strong>3/3 COMPLETE</strong>
+          </div>
+
+          <div class="success-row">
+            <span>TEAM STATUS</span>
+            <strong>READY</strong>
+          </div>
+
+          <div class="success-row">
+            <span>AUTHORIZATION</span>
+            <strong>CONFIRMED</strong>
+          </div>
+
+          <div class="success-row final-row">
+            <span>SYSTEM ACCESS</span>
+            <strong>RESTORED</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         FINAL SCREEN
+    =================================================== -->
+
+    <section
+      id="finalScreen"
+      class="panel final-screen"
+    >
+
+      <div class="panel-content final-content">
+
+        <img
+          class="aura-logo aura-logo-final"
+          src="assets/aura-logo.svg"
+          alt="AURA"
+        >
+
+        <div class="final-forum">
+          ФОРУМ ДЛЯ ПЕРВОКУРСНИКОВ 2026
+        </div>
+
+        <div class="final-line">
+          <span></span>
+          <div class="diamond"></div>
+          <span></span>
+        </div>
+
+        <div class="final-countdown">
+          СКОРО
+        </div>
+
+        <div class="final-status">
+          SYSTEM READY_
+        </div>
+
+      </div>
+
+    </section>
 
   </main>
 
@@ -214,4 +275,5 @@
   <script src="app.js"></script>
 
 </body>
+
 </html>
