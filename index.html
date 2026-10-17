@@ -1,1 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>AURA // Access Terminal</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="screen">
+
+    <!-- ДЕКОР -->
+    <div class="grid"></div>
+    <div class="scanline"></div>
+
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+
+    <!-- МИКРОТЕКСТ СЛЕВА -->
+    <div class="system-info system-info-left">
+      <span>AURA.SYSTEM</span>
+      <span>NODE // ACCESS</span>
+      <span>AUTHORIZATION MODULE</span>
+      <span>STATUS // ONLINE</span>
+    </div>
+
+
+    <!-- МИКРОТЕКСТ СПРАВА -->
+    <div class="system-info system-info-right">
+      <span>AURA FORUM 2026</span>
+      <span>BUILD 1.0.0</span>
+      <span>SECURE TERMINAL</span>
+      <span>USER // UNKNOWN</span>
+    </div>
+
+
+    <!-- ОСНОВНОЙ ЭКРАН -->
+    <section id="loginScreen" class="panel active">
+
+      <div class="logo">
+        AURA
+      </div>
+
+      <div class="forum-title">
+        ФОРУМ ДЛЯ ПЕРВОКУРСНИКОВ 2026
+      </div>
+
+      <div class="separator">
+        <span></span>
+        <div class="diamond"></div>
+        <span></span>
+      </div>
+
+      <div class="terminal-label">
+        ACCESS TERMINAL // AUTHORIZATION REQUIRED
+      </div>
+
+      <h1>ENTER ACCESS CODE</h1>
+
+      <div class="code-wrapper">
+
+        <input
+          id="codeInput"
+          type="text"
+          maxlength="8"
+          autocomplete="off"
+          spellcheck="false"
+          autofocus
+        >
+
+        <div id="codeBoxes" class="code-boxes">
+          <div class="code-box"></div>
+          <div class="code-box"></div>
+          <div class="code-box"></div>
+          <div class="code-box"></div>
+          <div class="code-box"></div>
+          <div class="code-box"></div>
+          <div class="code-box"></div>
+          <div class="code-box"></div>
+        </div>
+
+      </div>
+
+      <button id="enterButton">
+        ENTER
+      </button>
+
+      <div id="message" class="message">
+        WAITING FOR ACCESS CODE_
+      </div>
+
+    </section>
+
+
+    <!-- VERIFYING -->
+    <section id="verifyScreen" class="panel">
+
+      <div class="verify-icon"></div>
+
+      <div class="verify-title">
+        VERIFYING ACCESS CODE
+      </div>
+
+      <div class="verify-subtitle">
+        CONNECTING TO AURA.SYSTEM
+      </div>
+
+      <div class="loading-line">
+        <div class="loading-fill"></div>
+      </div>
+
+      <div class="loading-data">
+        <span>AUTHENTICATION</span>
+        <span>IN PROGRESS...</span>
+      </div>
+
+    </section>
+
+
+    <!-- ACCESS GRANTED -->
+    <section id="successScreen" class="panel">
+
+      <div class="success-small">
+        AURA.SYSTEM // AUTHORIZATION
+      </div>
+
+      <h2>
+        CODE ACCEPTED
+      </h2>
+
+      <div class="success-list">
+
+        <div class="success-row">
+          <span>ACCESS FRAGMENTS</span>
+          <strong>3/3 COMPLETE</strong>
+        </div>
+
+        <div class="success-row">
+          <span>TEAM STATUS</span>
+          <strong>READY</strong>
+        </div>
+
+        <div class="success-row">
+          <span>AUTHORIZATION</span>
+          <strong>CONFIRMED</strong>
+        </div>
+
+        <div class="success-row final-row">
+          <span>SYSTEM ACCESS</span>
+          <strong>RESTORED</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ФИНАЛ -->
+    <section id="finalScreen" class="panel final-screen">
+
+      <div class="final-logo">
+        AURA
+      </div>
+
+      <div class="final-forum">
+        FORUM 2026
+      </div>
+
+      <div class="final-countdown">
+        T−4 DAYS
+      </div>
+
+      <div class="final-status">
+        SYSTEM READY_
+      </div>
+
+    </section>
+
+
+    <!-- НИЖНЯЯ СТРОКА -->
+    <footer>
+      <span>PEOPLE</span>
+      <span>IDEAS</span>
+      <span>TECHNOLOGIES</span>
+      <span>COMMUNITY</span>
+    </footer>
+
+  </main>
+
+
+  <script src="app.js"></script>
+
+</body>
+</html>
