@@ -1,1 +1,839 @@
+* {
+  box-sizing: border-box;
+}
 
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #050507;
+  color: #f5f1ff;
+
+  font-family:
+    "Arial",
+    "Helvetica Neue",
+    sans-serif;
+}
+
+
+/* =========================
+   ОСНОВНОЙ ЭКРАН
+========================= */
+
+.screen {
+  position: relative;
+
+  width: 100vw;
+  height: 100vh;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 48%,
+      rgba(109, 48, 215, 0.19) 0%,
+      rgba(35, 16, 68, 0.08) 32%,
+      rgba(5, 5, 7, 0) 58%
+    ),
+    linear-gradient(
+      180deg,
+      #08080d 0%,
+      #050507 100%
+    );
+}
+
+
+/* =========================
+   СЕТКА
+========================= */
+
+.grid {
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.16;
+
+  background-image:
+    linear-gradient(
+      rgba(140, 86, 255, 0.12) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(140, 86, 255, 0.12) 1px,
+      transparent 1px
+    );
+
+  background-size: 70px 70px;
+
+  mask-image:
+    radial-gradient(
+      circle at center,
+      black 0%,
+      transparent 75%
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================
+   SCAN LINE
+========================= */
+
+.scanline {
+  position: absolute;
+
+  top: -10%;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+
+  opacity: 0.5;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #8b50ff,
+    #ffffff,
+    #8b50ff,
+    transparent
+  );
+
+  box-shadow:
+    0 0 12px rgba(130, 70, 255, 0.7);
+
+  animation:
+    scan 7s linear infinite;
+
+  pointer-events: none;
+}
+
+@keyframes scan {
+
+  0% {
+    top: -5%;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 0.45;
+  }
+
+  90% {
+    opacity: 0.45;
+  }
+
+  100% {
+    top: 105%;
+    opacity: 0;
+  }
+
+}
+
+
+/* =========================
+   УГЛЫ
+========================= */
+
+.corner {
+  position: absolute;
+
+  width: 90px;
+  height: 90px;
+
+  opacity: 0.8;
+}
+
+.corner-tl {
+  top: 30px;
+  left: 30px;
+
+  border-left: 2px solid #8350e8;
+  border-top: 2px solid #8350e8;
+}
+
+.corner-tr {
+  top: 30px;
+  right: 30px;
+
+  border-right: 2px solid #8350e8;
+  border-top: 2px solid #8350e8;
+}
+
+.corner-bl {
+  bottom: 30px;
+  left: 30px;
+
+  border-left: 2px solid #8350e8;
+  border-bottom: 2px solid #8350e8;
+}
+
+.corner-br {
+  bottom: 30px;
+  right: 30px;
+
+  border-right: 2px solid #8350e8;
+  border-bottom: 2px solid #8350e8;
+}
+
+
+/* =========================
+   СИСТЕМНАЯ ИНФОРМАЦИЯ
+========================= */
+
+.system-info {
+  position: absolute;
+
+  top: 80px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  font-family: monospace;
+
+  font-size: 12px;
+
+  letter-spacing: 2px;
+
+  color: #777184;
+
+  z-index: 5;
+}
+
+.system-info span:first-child {
+  color: #b888ff;
+}
+
+.system-info-left {
+  left: 70px;
+}
+
+.system-info-right {
+  right: 70px;
+
+  text-align: right;
+}
+
+
+/* =========================
+   ЭКРАНЫ
+========================= */
+
+.panel {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: scale(0.985);
+
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease,
+    visibility 0.45s;
+}
+
+.panel.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+  font-size: clamp(110px, 14vw, 240px);
+
+  font-weight: 800;
+
+  letter-spacing: -13px;
+
+  line-height: 0.85;
+
+  color: #f4f0ff;
+
+  text-shadow:
+    0 0 22px rgba(130, 70, 255, 0.22);
+
+  margin-bottom: 26px;
+}
+
+.forum-title {
+  font-size: clamp(16px, 1.55vw, 28px);
+
+  letter-spacing: 8px;
+
+  color: #b9aec9;
+}
+
+
+/* =========================
+   SEPARATOR
+========================= */
+
+.separator {
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  margin: 32px 0;
+}
+
+.separator span {
+  display: block;
+
+  width: 120px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #7b42e8
+    );
+}
+
+.separator span:last-child {
+  transform: scaleX(-1);
+}
+
+.diamond {
+  width: 6px;
+  height: 6px;
+
+  background: #b780ff;
+
+  transform: rotate(45deg);
+
+  box-shadow:
+    0 0 14px #9058ff;
+}
+
+
+/* =========================
+   TERMINAL
+========================= */
+
+.terminal-label {
+  font-family: monospace;
+
+  font-size: 13px;
+
+  letter-spacing: 4px;
+
+  color: #756e7e;
+
+  margin-bottom: 14px;
+}
+
+h1 {
+  margin: 0 0 28px;
+
+  font-size: clamp(23px, 2vw, 36px);
+
+  letter-spacing: 7px;
+
+  font-weight: 500;
+}
+
+
+/* =========================
+   CODE BOXES
+========================= */
+
+.code-wrapper {
+  position: relative;
+
+  cursor: text;
+}
+
+#codeInput {
+  position: absolute;
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+.code-boxes {
+  display: flex;
+
+  gap: 10px;
+}
+
+.code-box {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 58px;
+  height: 68px;
+
+  border:
+    1px solid rgba(168, 119, 255, 0.55);
+
+  background:
+    rgba(40, 23, 68, 0.24);
+
+  font-family: monospace;
+
+  font-size: 27px;
+
+  color: #f9f7ff;
+
+  box-shadow:
+    inset 0 0 15px rgba(120, 64, 215, 0.08);
+
+  transition:
+    0.2s ease;
+}
+
+.code-box.filled {
+  border-color: #a26cff;
+
+  background:
+    rgba(111, 58, 204, 0.17);
+
+  box-shadow:
+    0 0 13px rgba(129, 67, 237, 0.22);
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+button {
+  margin-top: 28px;
+
+  min-width: 180px;
+
+  padding: 13px 28px;
+
+  border:
+    1px solid #8451df;
+
+  background:
+    rgba(62, 29, 105, 0.22);
+
+  color: #d7c3ff;
+
+  font-size: 13px;
+
+  font-family: monospace;
+
+  letter-spacing: 5px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+button:hover {
+  background:
+    rgba(98, 49, 170, 0.36);
+
+  box-shadow:
+    0 0 24px rgba(127, 64, 230, 0.18);
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message {
+  height: 20px;
+
+  margin-top: 20px;
+
+  font-family: monospace;
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+
+  color: #675f70;
+}
+
+.message.error {
+  color: #cb657d;
+}
+
+
+/* =========================
+   VERIFY
+========================= */
+
+.verify-icon {
+  width: 135px;
+  height: 135px;
+
+  border:
+    1px solid #8a56e0;
+
+  border-radius: 50%;
+
+  position: relative;
+
+  margin-bottom: 38px;
+
+  animation:
+    rotate 2s linear infinite;
+}
+
+.verify-icon::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 13px;
+
+  border:
+    3px solid transparent;
+
+  border-top-color: #c1a1ff;
+  border-right-color: #7242d0;
+
+  border-radius: 50%;
+}
+
+.verify-icon::after {
+  content: "";
+
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #c7aaff;
+
+  box-shadow:
+    0 0 20px #985cff;
+
+  transform:
+    translate(-50%, -50%);
+}
+
+@keyframes rotate {
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+.verify-title {
+  font-size: 25px;
+
+  letter-spacing: 7px;
+}
+
+.verify-subtitle {
+  margin-top: 10px;
+
+  font-family: monospace;
+
+  color: #81778d;
+
+  letter-spacing: 4px;
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.loading-line {
+  width: min(680px, 65vw);
+
+  height: 8px;
+
+  margin-top: 40px;
+
+  overflow: hidden;
+
+  border:
+    1px solid #64428e;
+}
+
+.loading-fill {
+  width: 0;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #6833c3,
+      #aa76ff,
+      #ffffff
+    );
+
+  box-shadow:
+    0 0 12px rgba(171, 118, 255, 0.65);
+
+  animation:
+    loading 0.9s ease forwards;
+}
+
+@keyframes loading {
+
+  to {
+    width: 100%;
+  }
+
+}
+
+.loading-data {
+  width: min(680px, 65vw);
+
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 10px;
+
+  color: #73687f;
+
+  font-size: 11px;
+
+  font-family: monospace;
+
+  letter-spacing: 3px;
+}
+
+
+/* =========================
+   SUCCESS
+========================= */
+
+.success-small {
+  color: #766a82;
+
+  font-family: monospace;
+
+  letter-spacing: 4px;
+
+  margin-bottom: 22px;
+}
+
+#successScreen h2 {
+  margin: 0 0 45px;
+
+  font-size: clamp(44px, 5vw, 85px);
+
+  letter-spacing: 8px;
+
+  color: #c19cff;
+
+  text-shadow:
+    0 0 26px rgba(132, 67, 235, 0.3);
+}
+
+.success-list {
+  width: min(700px, 65vw);
+}
+
+.success-row {
+  display: flex;
+
+  justify-content: space-between;
+
+  padding: 15px 8px;
+
+  border-bottom:
+    1px solid rgba(131, 84, 190, 0.25);
+
+  font-family: monospace;
+
+  letter-spacing: 3px;
+
+  color: #777080;
+}
+
+.success-row strong {
+  color: #d7c1ff;
+
+  font-weight: 400;
+}
+
+.final-row strong {
+  color: #9e6cff;
+}
+
+
+/* =========================
+   FINAL
+========================= */
+
+.final-screen {
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(105, 48, 201, 0.26),
+      transparent 54%
+    );
+}
+
+.final-logo {
+  font-size: clamp(130px, 18vw, 290px);
+
+  font-weight: 800;
+
+  letter-spacing: -14px;
+
+  line-height: 0.8;
+
+  color: #f7f4ff;
+}
+
+.final-forum {
+  margin-top: 35px;
+
+  letter-spacing: 12px;
+
+  font-size: clamp(17px, 1.7vw, 30px);
+
+  color: #b6a8c7;
+}
+
+.final-countdown {
+  margin-top: 60px;
+
+  font-family: monospace;
+
+  font-size: clamp(40px, 5vw, 85px);
+
+  letter-spacing: 14px;
+
+  color: #9d65ff;
+
+  text-shadow:
+    0 0 25px rgba(143, 75, 255, 0.28);
+}
+
+.final-status {
+  margin-top: 20px;
+
+  font-family: monospace;
+
+  font-size: 12px;
+
+  letter-spacing: 5px;
+
+  color: #6c6377;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  position: absolute;
+
+  bottom: 52px;
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  display: flex;
+
+  gap: 46px;
+
+  font-family: monospace;
+
+  font-size: 9px;
+
+  letter-spacing: 3px;
+
+  color: #635b6d;
+
+  z-index: 10;
+}
+
+
+/* =========================
+   WRONG PASSWORD
+========================= */
+
+.shake {
+  animation:
+    shake 0.35s ease;
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-12px);
+  }
+
+  75% {
+    transform: translateX(12px);
+  }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 850px) {
+
+  .system-info {
+    display: none;
+  }
+
+  footer {
+    display: none;
+  }
+
+  .code-box {
+    width: 38px;
+    height: 52px;
+
+    font-size: 20px;
+  }
+
+  .code-boxes {
+    gap: 5px;
+  }
+
+}
