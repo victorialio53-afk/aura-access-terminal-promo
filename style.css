@@ -1,6 +1,5 @@
 /* =========================================================
    AURA ACCESS TERMINAL
-   FULL STYLESHEET
 ========================================================= */
 
 
@@ -14,11 +13,11 @@
 
 html,
 body {
-  margin: 0;
-  padding: 0;
-
   width: 100%;
   height: 100%;
+
+  margin: 0;
+  padding: 0;
 
   overflow: hidden;
 }
@@ -26,7 +25,7 @@ body {
 body {
   background: #050507;
 
-  color: #f6f2ff;
+  color: #f5f1ff;
 
   font-family:
     Arial,
@@ -46,25 +45,27 @@ body {
   width: 100vw;
   height: 100vh;
 
+  min-height: 100vh;
+
   overflow: hidden;
 
   background:
     radial-gradient(
-      circle at 50% 48%,
-      rgba(115, 54, 220, 0.18) 0%,
-      rgba(56, 26, 103, 0.08) 30%,
-      rgba(5, 5, 7, 0) 58%
+      circle at 50% 44%,
+      rgba(111, 52, 213, 0.18) 0%,
+      rgba(64, 28, 116, 0.08) 27%,
+      rgba(5, 5, 7, 0) 57%
     ),
     linear-gradient(
       180deg,
-      #09090e 0%,
+      #08080d 0%,
       #050507 100%
     );
 }
 
 
 /* =========================================================
-   BACKGROUND GRID
+   GRID
 ========================================================= */
 
 .grid {
@@ -74,40 +75,40 @@ body {
 
   pointer-events: none;
 
-  opacity: 0.16;
+  opacity: 0.12;
 
   background-image:
     linear-gradient(
-      rgba(142, 91, 255, 0.11) 1px,
+      rgba(143, 91, 255, 0.10) 1px,
       transparent 1px
     ),
     linear-gradient(
       90deg,
-      rgba(142, 91, 255, 0.11) 1px,
+      rgba(143, 91, 255, 0.10) 1px,
       transparent 1px
     );
 
   background-size:
-    70px 70px;
+    72px 72px;
 
   -webkit-mask-image:
     radial-gradient(
       circle at center,
       black 0%,
-      transparent 76%
+      transparent 73%
     );
 
   mask-image:
     radial-gradient(
       circle at center,
       black 0%,
-      transparent 76%
+      transparent 73%
     );
 }
 
 
 /* =========================================================
-   BACKGROUND GLOW
+   CENTRAL GLOW
 ========================================================= */
 
 .screen::before {
@@ -116,30 +117,61 @@ body {
   position: absolute;
 
   left: 50%;
-  top: 50%;
+  top: 44%;
 
-  width: 900px;
-  height: 900px;
+  width: 70vw;
+  height: 70vw;
+
+  max-width: 1100px;
+  max-height: 1100px;
 
   transform:
     translate(-50%, -50%);
 
   border-radius: 50%;
 
+  pointer-events: none;
+
   background:
     radial-gradient(
       circle,
-      rgba(102, 50, 190, 0.08),
-      rgba(102, 50, 190, 0.025) 42%,
-      transparent 70%
+      rgba(110, 48, 205, 0.10),
+      rgba(62, 25, 112, 0.025) 47%,
+      transparent 72%
     );
-
-  pointer-events: none;
 }
 
 
 /* =========================================================
-   SCAN LINE
+   CRT LINES
+========================================================= */
+
+.screen::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 100;
+
+  pointer-events: none;
+
+  opacity: 0.018;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 1) 0px,
+      rgba(255, 255, 255, 1) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+}
+
+
+/* =========================================================
+   SCANLINE
 ========================================================= */
 
 .scanline {
@@ -147,6 +179,8 @@ body {
 
   left: 0;
   top: -5%;
+
+  z-index: 20;
 
   width: 100%;
   height: 2px;
@@ -158,15 +192,16 @@ body {
   background:
     linear-gradient(
       90deg,
-      transparent 0%,
-      #6d36cb 30%,
-      #d7c0ff 50%,
-      #6d36cb 70%,
-      transparent 100%
+      transparent,
+      #7540d0,
+      #e3d4ff,
+      #7540d0,
+      transparent
     );
 
   box-shadow:
-    0 0 10px rgba(146, 82, 255, 0.5);
+    0 0 12px
+    rgba(145, 80, 255, 0.42);
 
   animation:
     scanMove 8s linear infinite;
@@ -180,17 +215,18 @@ body {
   }
 
   8% {
-    opacity: 0.35;
+    opacity: 0.32;
   }
 
   92% {
-    opacity: 0.35;
+    opacity: 0.32;
   }
 
   100% {
     top: 105%;
     opacity: 0;
   }
+
 }
 
 
@@ -201,105 +237,113 @@ body {
 .corner {
   position: absolute;
 
-  width: 92px;
-  height: 92px;
+  z-index: 15;
 
-  opacity: 0.8;
+  width: 95px;
+  height: 95px;
 
   pointer-events: none;
+
+  opacity: 0.78;
 }
 
 .corner-tl {
-  top: 30px;
-  left: 30px;
-
-  border-top:
-    2px solid rgba(139, 84, 229, 0.82);
+  left: 32px;
+  top: 32px;
 
   border-left:
-    2px solid rgba(139, 84, 229, 0.82);
+    2px solid #7942dc;
+
+  border-top:
+    2px solid #7942dc;
 }
 
 .corner-tr {
-  top: 30px;
-  right: 30px;
-
-  border-top:
-    2px solid rgba(139, 84, 229, 0.82);
+  right: 32px;
+  top: 32px;
 
   border-right:
-    2px solid rgba(139, 84, 229, 0.82);
+    2px solid #7942dc;
+
+  border-top:
+    2px solid #7942dc;
 }
 
 .corner-bl {
-  bottom: 30px;
-  left: 30px;
-
-  border-bottom:
-    2px solid rgba(139, 84, 229, 0.82);
+  left: 32px;
+  bottom: 32px;
 
   border-left:
-    2px solid rgba(139, 84, 229, 0.82);
+    2px solid #7942dc;
+
+  border-bottom:
+    2px solid #7942dc;
 }
 
 .corner-br {
-  bottom: 30px;
-  right: 30px;
-
-  border-bottom:
-    2px solid rgba(139, 84, 229, 0.82);
+  right: 32px;
+  bottom: 32px;
 
   border-right:
-    2px solid rgba(139, 84, 229, 0.82);
+    2px solid #7942dc;
+
+  border-bottom:
+    2px solid #7942dc;
 }
 
 
 /* =========================================================
-   SYSTEM INFORMATION
+   SYSTEM TEXT
 ========================================================= */
 
 .system-info {
   position: absolute;
 
-  top: 72px;
+  top: 57px;
 
-  z-index: 10;
+  z-index: 25;
 
   display: flex;
+
   flex-direction: column;
 
   gap: 8px;
 
-  color: #71697c;
+  color: #686170;
 
   font-family:
     "Courier New",
     monospace;
 
-  font-size: 11px;
+  font-size:
+    clamp(
+      8px,
+      0.7vw,
+      11px
+    );
 
-  letter-spacing: 2.4px;
+  letter-spacing: 2.2px;
 
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 .system-info span:first-child {
-  color: #b17dff;
+  color: #aa77ff;
 }
 
 .system-info-left {
-  left: 68px;
+  left: 72px;
 }
 
 .system-info-right {
-  right: 68px;
+  right: 72px;
 
   text-align: right;
 }
 
 
 /* =========================================================
-   PANELS
+   SCREENS
 ========================================================= */
 
 .panel {
@@ -307,63 +351,94 @@ body {
 
   inset: 0;
 
-  z-index: 3;
+  z-index: 5;
 
   display: flex;
-  flex-direction: column;
 
   align-items: center;
   justify-content: center;
 
+  padding:
+    clamp(85px, 10vh, 120px)
+    50px
+    clamp(65px, 8vh, 95px);
+
   opacity: 0;
+
   visibility: hidden;
 
   transform:
     scale(0.985);
 
   transition:
-    opacity 0.42s ease,
-    transform 0.42s ease,
-    visibility 0.42s;
+    opacity 0.4s ease,
+    transform 0.4s ease,
+    visibility 0.4s;
 }
 
 .panel.active {
   opacity: 1;
+
   visibility: visible;
 
   transform:
     scale(1);
 }
 
+.panel-content {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
 
 /* =========================================================
-   REAL AURA SVG LOGO
+   REAL AURA LOGO
 ========================================================= */
 
 .aura-logo {
   display: block;
 
+  width: auto;
   height: auto;
 
   object-fit: contain;
 
+  flex: 0 0 auto;
+
   filter:
     drop-shadow(
-      0 0 16px
-      rgba(132, 70, 238, 0.15)
+      0 0 18px
+      rgba(130, 69, 235, 0.17)
     );
 }
 
 
-/* LOGIN LOGO */
+/* START LOGO */
 
 .aura-logo-main {
   width:
-    min(620px, 46vw);
+    min(
+      560px,
+      38vw
+    );
 
-  max-height: 220px;
+  max-height:
+    150px;
 
-  margin-bottom: 28px;
+  margin-bottom:
+    clamp(
+      14px,
+      2vh,
+      22px
+    );
 }
 
 
@@ -371,17 +446,36 @@ body {
 
 .aura-logo-final {
   width:
-    min(720px, 52vw);
+    min(
+      620px,
+      42vw
+    );
 
-  max-height: 260px;
+  max-height:
+    175px;
 
-  margin-bottom: 34px;
+  margin-bottom:
+    clamp(
+      18px,
+      2.5vh,
+      28px
+    );
 
   filter:
     drop-shadow(
-      0 0 24px
-      rgba(137, 75, 242, 0.23)
+      0 0 26px
+      rgba(130, 69, 235, 0.22)
     );
+}
+
+
+/* =========================================================
+   LOGIN CONTENT
+========================================================= */
+
+.login-content {
+  max-width:
+    1000px;
 }
 
 
@@ -390,20 +484,25 @@ body {
 ========================================================= */
 
 .forum-title {
-  color: #bdb3c8;
+  color: #c0b6cc;
 
   font-size:
     clamp(
       15px,
       1.45vw,
-      27px
+      25px
     );
 
   font-weight: 400;
 
-  letter-spacing: 7px;
+  letter-spacing:
+    clamp(
+      5px,
+      0.5vw,
+      8px
+    );
 
-  text-align: center;
+  white-space: nowrap;
 }
 
 
@@ -411,32 +510,44 @@ body {
    SEPARATOR
 ========================================================= */
 
-.separator {
+.separator,
+.final-line {
   display: flex;
 
   align-items: center;
 
-  gap: 18px;
+  justify-content: center;
 
-  margin:
-    30px 0 28px;
+  gap: 18px;
 }
 
-.separator span {
+.separator {
+  margin:
+    clamp(
+      15px,
+      2.3vh,
+      22px
+    )
+    0;
+}
+
+.separator span,
+.final-line span {
   display: block;
 
-  width: 120px;
+  width: 115px;
   height: 1px;
 
   background:
     linear-gradient(
       90deg,
       transparent,
-      rgba(131, 74, 226, 0.9)
+      #7740dc
     );
 }
 
-.separator span:last-child {
+.separator span:last-child,
+.final-line span:last-child {
   transform:
     scaleX(-1);
 }
@@ -449,57 +560,75 @@ body {
     rotate(45deg);
 
   background:
-    #b67dff;
+    #b377ff;
 
   box-shadow:
     0 0 14px
-    rgba(156, 92, 255, 0.8);
+    rgba(155, 88, 255, 0.75);
 }
 
 
 /* =========================================================
-   LOGIN TERMINAL
+   TERMINAL LABEL
 ========================================================= */
 
 .terminal-label {
-  margin-bottom: 14px;
+  margin-bottom: 9px;
 
-  color: #746c7c;
+  color: #716978;
 
   font-family:
     "Courier New",
     monospace;
 
-  font-size: 12px;
-
-  letter-spacing: 4px;
-
-  text-align: center;
-}
-
-h1 {
-  margin:
-    0 0 28px;
-
-  color: #f3effa;
-
   font-size:
     clamp(
-      22px,
-      2vw,
-      36px
+      9px,
+      0.75vw,
+      12px
     );
 
-  font-weight: 500;
-
-  letter-spacing: 7px;
-
-  text-align: center;
+  letter-spacing:
+    3.4px;
 }
 
 
 /* =========================================================
-   CODE INPUT
+   ACCESS TITLE
+========================================================= */
+
+h1 {
+  margin:
+    0
+    0
+    clamp(
+      16px,
+      2vh,
+      22px
+    );
+
+  color: #f5f1fc;
+
+  font-size:
+    clamp(
+      23px,
+      2.1vw,
+      35px
+    );
+
+  font-weight: 400;
+
+  letter-spacing:
+    clamp(
+      4px,
+      0.5vw,
+      7px
+    );
+}
+
+
+/* =========================================================
+   INPUT
 ========================================================= */
 
 .code-wrapper {
@@ -509,9 +638,10 @@ h1 {
 }
 
 #codeInput {
-  position: absolute;
+  position: fixed;
 
   left: -9999px;
+  top: -9999px;
 
   width: 1px;
   height: 1px;
@@ -527,7 +657,16 @@ h1 {
 .code-boxes {
   display: flex;
 
-  gap: 10px;
+  align-items: center;
+
+  justify-content: center;
+
+  gap:
+    clamp(
+      5px,
+      0.7vw,
+      10px
+    );
 }
 
 .code-box {
@@ -536,35 +675,49 @@ h1 {
   align-items: center;
   justify-content: center;
 
-  width: 58px;
-  height: 68px;
+  width:
+    clamp(
+      43px,
+      3.6vw,
+      58px
+    );
+
+  height:
+    clamp(
+      50px,
+      4.4vw,
+      68px
+    );
 
   border:
     1px solid
     rgba(
-      168,
-      119,
+      158,
+      103,
       255,
-      0.48
+      0.50
     );
 
   background:
     rgba(
-      40,
+      41,
       23,
-      68,
-      0.22
+      71,
+      0.21
     );
 
-  color: #faf8ff;
+  color: #faf7ff;
 
   font-family:
     "Courier New",
     monospace;
 
-  font-size: 27px;
-
-  font-weight: 400;
+  font-size:
+    clamp(
+      21px,
+      1.8vw,
+      28px
+    );
 
   box-shadow:
     inset
@@ -572,45 +725,43 @@ h1 {
     0
     15px
     rgba(
-      120,
-      64,
-      215,
-      0.06
+      122,
+      67,
+      220,
+      0.05
     );
 
   transition:
     border-color 0.18s ease,
     background 0.18s ease,
-    box-shadow 0.18s ease,
-    transform 0.18s ease;
+    box-shadow 0.18s ease;
+}
+
+.code-gap {
+  margin-left:
+    8px;
 }
 
 .code-box.filled {
-  border-color:
-    rgba(
-      171,
-      113,
-      255,
-      0.95
-    );
+  border-color: #a86cff;
 
   background:
     rgba(
-      112,
-      59,
-      204,
-      0.14
+      106,
+      54,
+      195,
+      0.15
     );
 
   box-shadow:
     0
     0
-    12px
+    13px
     rgba(
-      129,
+      130,
       67,
-      237,
-      0.2
+      238,
+      0.22
     );
 }
 
@@ -622,31 +773,30 @@ h1 {
 button {
   min-width: 180px;
 
-  margin-top: 28px;
+  margin-top:
+    clamp(
+      15px,
+      2vh,
+      21px
+    );
 
   padding:
-    13px 28px;
+    12px 28px;
 
   border:
-    1px solid
-    rgba(
-      139,
-      84,
-      229,
-      0.9
-    );
+    1px solid #8050d6;
 
   outline: none;
 
   background:
     rgba(
-      65,
-      31,
-      110,
-      0.18
+      63,
+      30,
+      105,
+      0.19
     );
 
-  color: #d7c4f9;
+  color: #dbc8ff;
 
   font-family:
     "Courier New",
@@ -659,20 +809,19 @@ button {
   cursor: pointer;
 
   transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+    0.2s ease;
 }
 
 button:hover {
-  border-color: #a76cff;
+  border-color:
+    #ab76ff;
 
   background:
     rgba(
-      98,
-      49,
-      170,
-      0.3
+      95,
+      47,
+      165,
+      0.29
     );
 
   box-shadow:
@@ -680,24 +829,24 @@ button:hover {
     0
     22px
     rgba(
-      127,
-      64,
-      230,
-      0.16
+      123,
+      62,
+      222,
+      0.15
     );
 }
 
 
 /* =========================================================
-   LOGIN MESSAGE
+   MESSAGE
 ========================================================= */
 
 .message {
-  height: 18px;
+  min-height: 16px;
 
-  margin-top: 19px;
+  margin-top: 14px;
 
-  color: #655e6c;
+  color: #655e6d;
 
   font-family:
     "Courier New",
@@ -709,18 +858,18 @@ button:hover {
 }
 
 .message.error {
-  color: #d36c82;
+  color: #d66d83;
 }
 
 
 /* =========================================================
-   WRONG CODE SHAKE
+   SHAKE
 ========================================================= */
 
 .shake {
   animation:
     shakeAnimation
-    0.35s
+    0.34s
     ease;
 }
 
@@ -741,61 +890,97 @@ button:hover {
     transform:
       translateX(11px);
   }
+
 }
 
 
 /* =========================================================
-   VERIFY SCREEN
+   VERIFY
 ========================================================= */
 
-.verify-icon {
+.verify-content {
+  max-width: 900px;
+}
+
+.verify-circle {
   position: relative;
 
-  width: 136px;
-  height: 136px;
+  width:
+    clamp(
+      110px,
+      9vw,
+      145px
+    );
 
-  margin-bottom: 38px;
+  height:
+    clamp(
+      110px,
+      9vw,
+      145px
+    );
+
+  margin-bottom:
+    34px;
 
   border:
     1px solid
     rgba(
-      141,
+      140,
       84,
       225,
-      0.8
+      0.72
     );
 
   border-radius: 50%;
+}
+
+.verify-ring {
+  position: absolute;
+
+  border-radius: 50%;
+}
+
+.ring-one {
+  inset: 12px;
+
+  border:
+    3px solid
+    transparent;
+
+  border-top-color:
+    #c6a6ff;
+
+  border-right-color:
+    #7140cf;
 
   animation:
-    verifyRotate
-    2.2s
+    spinClockwise
+    1.8s
     linear
     infinite;
 }
 
-.verify-icon::before {
-  content: "";
-
-  position: absolute;
-
-  inset: 13px;
+.ring-two {
+  inset: 29px;
 
   border:
-    3px solid transparent;
+    1px solid
+    transparent;
 
-  border-top-color:
-    #c5a5ff;
+  border-left-color:
+    #9662ee;
 
-  border-right-color:
-    #7242d0;
+  border-bottom-color:
+    #9662ee;
 
-  border-radius: 50%;
+  animation:
+    spinCounter
+    2.7s
+    linear
+    infinite;
 }
 
-.verify-icon::after {
-  content: "";
-
+.verify-dot {
   position: absolute;
 
   left: 50%;
@@ -810,30 +995,35 @@ button:hover {
   border-radius: 50%;
 
   background:
-    #c7aaff;
+    #d1b4ff;
 
   box-shadow:
     0
     0
-    18px
-    #985cff;
+    20px
+    #9d5eff;
 }
 
-@keyframes verifyRotate {
-
-  from {
-    transform:
-      rotate(0deg);
-  }
+@keyframes spinClockwise {
 
   to {
     transform:
       rotate(360deg);
   }
+
+}
+
+@keyframes spinCounter {
+
+  to {
+    transform:
+      rotate(-360deg);
+  }
+
 }
 
 .verify-title {
-  color: #f1ebfb;
+  color: #f2ecfc;
 
   font-size:
     clamp(
@@ -843,14 +1033,12 @@ button:hover {
     );
 
   letter-spacing: 7px;
-
-  text-align: center;
 }
 
 .verify-subtitle {
-  margin-top: 12px;
+  margin-top: 11px;
 
-  color: #7e7489;
+  color: #7c7288;
 
   font-family:
     "Courier New",
@@ -859,13 +1047,11 @@ button:hover {
   font-size: 11px;
 
   letter-spacing: 4px;
-
-  text-align: center;
 }
 
 
 /* =========================================================
-   VERIFY LOADING BAR
+   LOADING BAR
 ========================================================= */
 
 .loading-line {
@@ -877,89 +1063,87 @@ button:hover {
 
   height: 8px;
 
-  margin-top: 40px;
+  margin-top: 39px;
 
   overflow: hidden;
 
   border:
     1px solid
     rgba(
-      101,
-      65,
+      103,
+      67,
       145,
-      0.9
+      0.88
     );
 
   background:
     rgba(
-      17,
-      10,
-      25,
-      0.45
+      12,
+      8,
+      19,
+      0.5
     );
 }
 
 .loading-fill {
-  width: 0;
+  width: 0%;
   height: 100%;
 
   background:
     linear-gradient(
       90deg,
-      #6030b7,
-      #aa76ff,
-      #efe6ff
+      #5d2db4,
+      #a96fff,
+      #f1e7ff
     );
 
   box-shadow:
     0
     0
-    12px
+    13px
     rgba(
-      171,
-      118,
+      170,
+      112,
       255,
       0.55
     );
 }
 
-
-/*
-JS добавляет класс loading-active,
-поэтому progress bar каждый раз
-запускается заново.
-*/
-
 .loading-fill.loading-active {
   animation:
-    verifyLoading
-    1.15s
+    loadingAnimation
+    1.3s
     cubic-bezier(
-      0.22,
-      0.7,
-      0.28,
+      0.18,
+      0.69,
+      0.27,
       1
     )
     forwards;
 }
 
-@keyframes verifyLoading {
+@keyframes loadingAnimation {
 
   0% {
     width: 0%;
   }
 
-  35% {
-    width: 28%;
+  30% {
+    width: 24%;
   }
 
-  68% {
-    width: 74%;
+  60% {
+    width: 57%;
+  }
+
+  78% {
+    width: 82%;
   }
 
   100% {
     width: 100%;
   }
+
 }
 
 .loading-data {
@@ -973,9 +1157,9 @@ JS добавляет класс loading-active,
       65vw
     );
 
-  margin-top: 11px;
+  margin-top: 10px;
 
-  color: #72697c;
+  color: #706779;
 
   font-family:
     "Courier New",
@@ -988,13 +1172,17 @@ JS добавляет класс loading-active,
 
 
 /* =========================================================
-   SUCCESS SCREEN
+   SUCCESS
 ========================================================= */
 
-.success-small {
-  margin-bottom: 22px;
+.success-content {
+  max-width: 850px;
+}
 
-  color: #766c80;
+.success-small {
+  margin-bottom: 20px;
+
+  color: #746a7f;
 
   font-family:
     "Courier New",
@@ -1005,34 +1193,36 @@ JS добавляет класс loading-active,
   letter-spacing: 4px;
 }
 
-#successScreen h2 {
-  margin:
-    0 0 42px;
+.success-title {
+  margin-bottom: 38px;
 
-  color: #bd98ff;
+  color: #bf99ff;
 
   font-size:
     clamp(
-      42px,
-      5vw,
-      84px
+      43px,
+      4.8vw,
+      82px
     );
 
   font-weight: 500;
 
-  letter-spacing: 8px;
-
-  text-align: center;
+  letter-spacing:
+    clamp(
+      5px,
+      0.6vw,
+      9px
+    );
 
   text-shadow:
     0
     0
-    24px
+    26px
     rgba(
       132,
       67,
       235,
-      0.26
+      0.28
     );
 }
 
@@ -1040,7 +1230,7 @@ JS добавляет класс loading-active,
   width:
     min(
       700px,
-      65vw
+      70vw
     );
 }
 
@@ -1049,10 +1239,10 @@ JS добавляет класс loading-active,
 
   justify-content: space-between;
 
-  gap: 30px;
+  gap: 35px;
 
   padding:
-    15px 8px;
+    14px 8px;
 
   border-bottom:
     1px solid
@@ -1060,10 +1250,10 @@ JS добавляет класс loading-active,
       131,
       84,
       190,
-      0.22
+      0.23
     );
 
-  color: #77707f;
+  color: #76707e;
 
   font-family:
     "Courier New",
@@ -1072,79 +1262,109 @@ JS добавляет класс loading-active,
   font-size: 12px;
 
   letter-spacing: 3px;
+
+  text-align: left;
 }
 
 .success-row strong {
-  color: #d6c0fb;
+  color: #d7c3fb;
 
   font-weight: 400;
+
+  text-align: right;
 }
 
 .final-row strong {
-  color: #9e69ff;
+  color:
+    #a269ff;
 }
 
 
 /* =========================================================
-   FINAL SCREEN
+   FINAL
 ========================================================= */
 
 .final-screen {
   background:
     radial-gradient(
-      circle at center,
+      circle at 50% 44%,
       rgba(
-        109,
-        51,
-        201,
+        112,
+        50,
+        208,
         0.21
       ),
       rgba(
-        31,
-        14,
-        55,
-        0.07
+        40,
+        18,
+        71,
+        0.06
       )
-      43%,
+      46%,
       transparent
-      67%
+      68%
     );
 }
 
+.final-content {
+  max-width: 1000px;
+}
+
 .final-forum {
-  color: #bbb0c6;
+  color: #bdb2c8;
 
   font-size:
     clamp(
       15px,
-      1.55vw,
-      28px
+      1.45vw,
+      25px
     );
 
-  letter-spacing: 7px;
+  letter-spacing:
+    clamp(
+      5px,
+      0.5vw,
+      8px
+    );
 
-  text-align: center;
+  white-space: nowrap;
+}
+
+.final-line {
+  margin:
+    clamp(
+      18px,
+      2.6vh,
+      26px
+    )
+    0
+    clamp(
+      23px,
+      3vh,
+      32px
+    );
 }
 
 .final-countdown {
-  margin-top: 54px;
-
-  color: #aa75ff;
+  color: #a86bff;
 
   font-size:
     clamp(
       48px,
-      5.6vw,
-      98px
+      5vw,
+      88px
     );
 
-  font-weight: 600;
+  font-weight: 500;
 
-  letter-spacing: 18px;
+  letter-spacing:
+    clamp(
+      11px,
+      1.3vw,
+      19px
+    );
 
   line-height: 1;
-
-  text-align: center;
 
   text-shadow:
     0
@@ -1154,7 +1374,7 @@ JS добавляет класс loading-active,
       143,
       75,
       255,
-      0.3
+      0.30
     );
 
   animation:
@@ -1164,42 +1384,8 @@ JS добавляет класс loading-active,
     infinite;
 }
 
-@keyframes finalPulse {
-
-  0%,
-  100% {
-    opacity: 0.84;
-
-    text-shadow:
-      0
-      0
-      18px
-      rgba(
-        143,
-        75,
-        255,
-        0.18
-      );
-  }
-
-  50% {
-    opacity: 1;
-
-    text-shadow:
-      0
-      0
-      34px
-      rgba(
-        143,
-        75,
-        255,
-        0.4
-      );
-  }
-}
-
 .final-status {
-  margin-top: 24px;
+  margin-top: 22px;
 
   color: #6e6577;
 
@@ -1207,70 +1393,89 @@ JS добавляет класс loading-active,
     "Courier New",
     monospace;
 
-  font-size: 11px;
+  font-size: 10px;
 
   letter-spacing: 5px;
 }
 
+@keyframes finalPulse {
 
-/* =========================================================
-   FOOTER
-========================================================= */
+  0%,
+  100% {
+    opacity: 0.82;
+  }
 
-footer {
-  position: absolute;
+  50% {
+    opacity: 1;
+  }
 
-  left: 50%;
-  bottom: 50px;
-
-  z-index: 10;
-
-  display: flex;
-
-  gap: 45px;
-
-  transform:
-    translateX(-50%);
-
-  color: #625a6b;
-
-  font-family:
-    "Courier New",
-    monospace;
-
-  font-size: 9px;
-
-  letter-spacing: 3px;
 }
 
 
 /* =========================================================
-   SUBTLE SCREEN FLICKER
+   SMALL HEIGHT SCREENS
 ========================================================= */
 
-.screen::after {
-  content: "";
+@media (max-height: 780px) {
 
-  position: absolute;
+  .panel {
+    padding-top: 75px;
+    padding-bottom: 55px;
+  }
 
-  inset: 0;
+  .aura-logo-main {
+    width:
+      min(
+        480px,
+        35vw
+      );
 
-  z-index: 20;
+    max-height:
+      128px;
+  }
 
-  pointer-events: none;
+  .aura-logo-final {
+    width:
+      min(
+        530px,
+        39vw
+      );
 
-  opacity: 0.018;
+    max-height:
+      145px;
+  }
 
-  background:
-    repeating-linear-gradient(
-      0deg,
-      #ffffff 0px,
-      #ffffff 1px,
-      transparent 1px,
-      transparent 4px
-    );
+  .separator {
+    margin:
+      13px 0 15px;
+  }
 
-  mix-blend-mode: overlay;
+  .forum-title,
+  .final-forum {
+    font-size:
+      16px;
+  }
+
+  h1 {
+    margin-bottom: 15px;
+
+    font-size:
+      25px;
+  }
+
+  .code-box {
+    width: 45px;
+    height: 51px;
+  }
+
+  button {
+    margin-top: 14px;
+  }
+
+  .message {
+    margin-top: 10px;
+  }
+
 }
 
 
@@ -1278,14 +1483,9 @@ footer {
    MOBILE
 ========================================================= */
 
-@media
-(max-width: 850px) {
+@media (max-width: 850px) {
 
   .system-info {
-    display: none;
-  }
-
-  footer {
     display: none;
   }
 
@@ -1294,65 +1494,60 @@ footer {
     height: 55px;
   }
 
+  .panel {
+    padding:
+      70px
+      22px
+      55px;
+  }
+
   .aura-logo-main {
-    width:
-      min(
-        78vw,
-        520px
-      );
+    width: 70vw;
   }
 
   .aura-logo-final {
-    width:
-      min(
-        80vw,
-        580px
-      );
+    width: 74vw;
   }
 
   .forum-title,
   .final-forum {
-    padding:
-      0 25px;
+    white-space: normal;
 
-    letter-spacing: 4px;
+    padding: 0 15px;
+
+    line-height: 1.45;
   }
 
-  .code-boxes {
-    gap: 5px;
+  .separator span,
+  .final-line span {
+    width: 70px;
   }
 
   .code-box {
-    width: 38px;
-    height: 50px;
+    width: 34px;
+    height: 46px;
 
-    font-size: 19px;
+    font-size: 18px;
   }
 
-  h1 {
-    letter-spacing: 4px;
+  .code-boxes {
+    gap: 4px;
   }
 
-  .terminal-label {
-    padding:
-      0 24px;
-
-    font-size: 9px;
-
-    letter-spacing: 2px;
+  .code-gap {
+    margin-left: 4px;
   }
 
   .success-list {
-    width: 88vw;
+    width: 90vw;
   }
 
   .success-row {
+    gap: 12px;
+
     font-size: 9px;
 
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
   }
 
-  .final-countdown {
-    letter-spacing: 10px;
-  }
 }
